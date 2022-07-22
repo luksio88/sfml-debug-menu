@@ -2,7 +2,7 @@
 	An example of use sfml-debug-menu.
 */
 
-#include "../debugMenu.hpp"
+#include "../source/debugMenu.hpp"
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "sfml-debug-menu example");
