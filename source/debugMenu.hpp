@@ -1,28 +1,11 @@
 /*
-	MIT License
-
 	Copyright (c) 2022 luksio88
-
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
-
-	The above copyright notice and this permission notice shall be included in all
-	copies or substantial portions of the Software.
-
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-	SOFTWARE.
-	
 	Origin: https://github.com/luksio88/sfml-debug-menu
+	For license information check "LICENSE" file.
 */
+
+#ifndef SFML_DEBUG_MENU_DEBUG_MENU_HPP
+#define SFML_DEBUG_MENU_DEBUG_MENU_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -62,21 +45,38 @@ class DebugMenuTab : public DebugWidget {
 	std::string title = "Tab";
 };
 
-class WidgetTextbox : public DebugWidget {
+class WidgetTextbox : public DebugWidget { //todo https://www.youtube.com/watch?v=T31MoLJws4U
 	std::string value = "";
 	bool isSelected = false;
 	int limit = 0;
 };
 
-class DebugMenu : public sf::Drawable, public sf::Transformable { // todo: https://www.sfml-dev.org/tutorials/2.5/graphics-vertex-array.php#creating-an-sfml-like-entity
+class DebugMenu : public sf::Drawable, public sf::Transformable {
 	bool isExtended = false;
 	std::string extendPhrase = "Show";
 	std::string retractPhrase = "Hide";
 	
+	sf::Text extendButtonText;
+	sf::RectangleShape extendButtonBg;
+	sf::Texture triangleTexture;
+	sf::Sprite triangle; // todo: MOVE TRIANGLE (and every its resources) TO TABS !!!
+	
 	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 	
 public:
-	DebugMenu(sf::Font font);
+	DebugMenu(sf::Font &font);
+	
+	void extend();
+	
+	void retract();
+	
 	void setExtendPhrase(std::string phrase);
+	
+	void setRetractPhrase(std::string phrase);
+	
 	std::string getExtendPhrase();
+	
+	std::string getRetractPhrase();
 };
+
+#endif
