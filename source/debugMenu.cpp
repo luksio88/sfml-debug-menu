@@ -4,18 +4,7 @@
 	For license information check "LICENSE" file.
 */
 
-#include "debugMenu.hpp"
-
-#define PIXEL_BLANK 0, 0, 0, 0
-#define PIXEL_WHITE 255, 255, 255, 255
-
-const sf::Uint8 triangleTexturePixels[100] = {
-	PIXEL_BLANK, PIXEL_BLANK, PIXEL_WHITE, PIXEL_BLANK, PIXEL_BLANK,
-	PIXEL_BLANK, PIXEL_BLANK, PIXEL_WHITE, PIXEL_WHITE, PIXEL_BLANK,
-	PIXEL_BLANK, PIXEL_BLANK, PIXEL_WHITE, PIXEL_WHITE, PIXEL_WHITE,
-	PIXEL_BLANK, PIXEL_BLANK, PIXEL_WHITE, PIXEL_WHITE, PIXEL_BLANK,
-	PIXEL_BLANK, PIXEL_BLANK, PIXEL_WHITE, PIXEL_BLANK, PIXEL_BLANK,
-};
+#include "DebugMenu.hpp"
 
 void textCenterOrigin(sf::Text &text)
 {
@@ -26,7 +15,6 @@ void textCenterOrigin(sf::Text &text)
 void DebugMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 	states.transform *= getTransform();
 	target.draw(extendButtonBg, states);
-	target.draw(triangle, states);
 	target.draw(extendButtonText, states);
 }
 
@@ -42,10 +30,6 @@ DebugMenu::DebugMenu(sf::Font &font) {
 	
 	extendButtonBg.setSize(sf::Vector2f(300, 20));
 	extendButtonBg.setFillColor(sf::Color(0, 0, 0, 128));
-	
-	triangleTexture.create(5, 5);
-	triangleTexture.update(triangleTexturePixels);
-	triangle.setTexture(triangleTexture);
 }
 
 // PUBLIC METHODS

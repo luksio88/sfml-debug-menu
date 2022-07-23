@@ -6,8 +6,8 @@
 	For license information check "LICENSE" file.
 */
 
-#include "../source/debugMenu.hpp"
-#include <iostream>
+#include "../source/DebugMenu.hpp"
+
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "sfml-debug-menu example");
 	sf::Event event;
