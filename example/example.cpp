@@ -20,6 +20,9 @@ int main() {
 	DebugMenu myMenu(font);
 	myMenu.setPosition(sf::Vector2f(900, 0));
 	
+	// test widget tab
+	WidgetTab myTab(font);
+	
 	while(window.isOpen()) {
 		
 		// EVENTS
@@ -33,6 +36,8 @@ int main() {
 		window.clear(sf::Color(100, 100, 200));
 		
 		window.draw(myMenu); // drawing menu
+		
+		window.draw(myTab); // drawing test tab
 		
 		window.display();
 	}

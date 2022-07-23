@@ -13,13 +13,14 @@
 
 class WidgetTab : public DebugWidget {
 	bool isExtended = false;
-	std::string title = "Tab";
 	
 	sf::Texture triangleTexture;
 	sf::Sprite triangle;
 	
-  public:
-	WidgetTab();
+public:
+	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+	
+	WidgetTab(sf::Font &font);
 };
 
 #endif

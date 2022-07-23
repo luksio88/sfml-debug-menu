@@ -9,9 +9,18 @@
 
 #include <SFML/Graphics.hpp>
 
-class DebugWidget { // todo: https://www.p-programowanie.pl/cpp/polimorfizm-metody-wirtualne
+class DebugWidget : public sf::Drawable, public sf::Transformable { // todo: https://www.p-programowanie.pl/cpp/polimorfizm-metody-wirtualne
 	int order = 0;
 	std::string label = "Widget";
+	
+	sf::Text labelText;
+	sf::RectangleShape background;
+	sf::RectangleShape border;
+
+public:
+	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+	
+	DebugWidget(sf::Font &font);
 };
 
 #endif

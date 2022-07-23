@@ -26,9 +26,9 @@ class DebugMenu : public sf::Drawable, public sf::Transformable {
 	sf::Text extendButtonText;
 	sf::RectangleShape extendButtonBg;
 	
+public:
 	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 	
-  public:
 	DebugMenu(sf::Font &font);
 	
 	void extend();
