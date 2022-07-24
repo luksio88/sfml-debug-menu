@@ -9,7 +9,18 @@
 
 #include <SFML/Graphics.hpp>
 
+enum WidgetType {
+	WidgetTypeButton,
+	WidgetTypeCheckbox,
+	WidgetTypeDropdown,
+	WidgetTypeSlider,
+	WidgetTypeSpinner,
+	WidgetTypeTab,
+	WidgetTypeTextbox
+};
+
 class DebugWidget : public sf::Drawable, public sf::Transformable { // todo: https://www.p-programowanie.pl/cpp/polimorfizm-metody-wirtualne
+protected:
 	int order = 0;
 	std::string label = "Widget";
 	
@@ -21,6 +32,8 @@ public:
 	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 	
 	DebugWidget(sf::Font &font);
+	
+	void setOrder(int order);
 };
 
 #endif

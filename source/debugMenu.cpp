@@ -14,6 +14,14 @@ void textCenterOrigin(sf::Text &text)
 
 void DebugMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 	states.transform *= getTransform();
+	for(int i = 0; i < widgetVector.size(); i++) {
+		(*widgetVector[i]).setPosition(sf::Vector2f(0, 40 * i)); // temporary, it needs to handle tabs retracting!
+		target.draw(*widgetVector[i], states);
+	}
+	
+	extendButtonBg.setPosition(sf::Vector2f(0, 40 * widgetVector.size()));
+	extendButtonText.setPosition(sf::Vector2f(150, 40 * widgetVector.size() + 10));
+	
 	target.draw(extendButtonBg, states);
 	target.draw(extendButtonText, states);
 }
@@ -21,6 +29,7 @@ void DebugMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 // CONSTRUCTOR
 
 DebugMenu::DebugMenu(sf::Font &font) {
+	DebugMenu::font = font;
 	extendButtonText.setFont(font);
 	extendButtonText.setCharacterSize(12);
 	extendButtonText.setFillColor(sf::Color::White);
@@ -46,6 +55,11 @@ void DebugMenu::retract() {
 	textCenterOrigin(extendButtonText);
 }
 
+void DebugMenu::toggle() {
+	if(isExtended) retract();
+	else extend();
+}
+
 void DebugMenu::setExtendPhrase(std::string phrase) {
 	extendPhrase = phrase;
 	if(!isExtended) {
@@ -68,4 +82,38 @@ std::string DebugMenu::getExtendPhrase() {
 
 std::string DebugMenu::getRetractPhrase() {
 	return retractPhrase;
+}
+
+void DebugMenu::handleEvent(sf::Event &event) {
+	if(event.type == sf::Event::MouseButtonPressed) {
+		toggle();
+	}
+}
+
+void DebugMenu::addWidget(WidgetType widgetType, int order) {
+	widgetVector.emplace_back();
+	switch(widgetType) {
+	case WidgetTypeButton:
+		widgetVector.back() = new WidgetButton(font);
+		break;
+	case WidgetTypeCheckbox:
+		widgetVector.back() = new WidgetCheckbox(font);
+		break;
+	case WidgetTypeDropdown:
+		widgetVector.back() = new WidgetDropdown(font);
+		break;
+	case WidgetTypeSlider:
+		widgetVector.back() = new WidgetSlider(font);
+		break;
+	case WidgetTypeSpinner:
+		widgetVector.back() = new WidgetSpinner(font);
+		break;
+	case WidgetTypeTab:
+		widgetVector.back() = new WidgetTab(font);
+		break;
+	case WidgetTypeTextbox:
+		widgetVector.back() = new WidgetTextbox(font);
+		break;
+	}
+	widgetVector.back()->setOrder(order);
 }

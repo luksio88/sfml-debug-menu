@@ -5,3 +5,16 @@
 */
 
 #include "WidgetButton.hpp"
+
+void WidgetButton::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+	DebugWidget::draw(target, states);
+	states.transform *= getTransform();
+}
+
+// CONSTRUCTOR
+
+WidgetButton::WidgetButton(sf::Font &font) : DebugWidget(font) {
+	
+}
+
+// PUBLIC METHODS

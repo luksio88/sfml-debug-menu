@@ -5,3 +5,16 @@
 */
 
 #include "WidgetTextbox.hpp"
+
+void WidgetTextbox::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+	DebugWidget::draw(target, states);
+	states.transform *= getTransform();
+}
+
+// CONSTRUCTOR
+
+WidgetTextbox::WidgetTextbox(sf::Font &font) : DebugWidget(font) {
+	
+}
+
+// PUBLIC METHODS

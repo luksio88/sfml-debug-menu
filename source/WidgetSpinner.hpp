@@ -16,6 +16,11 @@ class WidgetSpinner : public DebugWidget {
 	float valueMin;
 	float valueMax;
 	float step;
+	
+public:
+	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+	
+	WidgetSpinner(sf::Font &font);
 };
 
 #endif

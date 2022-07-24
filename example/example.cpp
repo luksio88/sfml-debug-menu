@@ -9,7 +9,7 @@
 #include "../source/DebugMenu.hpp"
 
 int main() {
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "sfml-debug-menu example");
+	sf::RenderWindow window(sf::VideoMode(1280, 720), "sfml-debug-menu example", sf::Style::Close);
 	sf::Event event;
 	
 	// loading font
@@ -20,24 +20,32 @@ int main() {
 	DebugMenu myMenu(font);
 	myMenu.setPosition(sf::Vector2f(900, 0));
 	
-	// test widget tab
-	WidgetTab myTab(font);
+	// adding test widget
+	myMenu.addWidget(WidgetTypeTab);
+	myMenu.addWidget(WidgetTypeTab);
+	myMenu.addWidget(WidgetTypeTab);
 	
 	while(window.isOpen()) {
 		
 		// EVENTS
+		
 		while(window.pollEvent(event)) {
+			
+			// handle events for menu
+			myMenu.handleEvent(event);
+			
+			// rest of event handling
 			if(event.type == sf::Event::Closed) {
                 window.close();
 			}
 		}
 		
 		// RENDER
+		
 		window.clear(sf::Color(100, 100, 200));
 		
-		window.draw(myMenu); // drawing menu
-		
-		window.draw(myTab); // drawing test tab
+		// drawing menu
+		window.draw(myMenu);
 		
 		window.display();
 	}

@@ -5,3 +5,16 @@
 */
 
 #include "WidgetDropdown.hpp"
+
+void WidgetDropdown::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+	DebugWidget::draw(target, states);
+	states.transform *= getTransform();
+}
+
+// CONSTRUCTOR
+
+WidgetDropdown::WidgetDropdown(sf::Font &font) : DebugWidget(font) {
+	
+}
+
+// PUBLIC METHODS

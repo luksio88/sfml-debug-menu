@@ -21,6 +21,10 @@ public:
 	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 	
 	WidgetTab(sf::Font &font);
+	
+	void extend();
+	void retract();
+	void toggle();
 };
 
 #endif

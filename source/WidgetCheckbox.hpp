@@ -13,6 +13,11 @@
 
 class WidgetCheckbox : public DebugWidget {
 	bool value = false;
+	
+public:
+	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+	
+	WidgetCheckbox(sf::Font &font);
 };
 
 #endif

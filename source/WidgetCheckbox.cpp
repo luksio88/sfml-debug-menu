@@ -5,3 +5,16 @@
 */
 
 #include "WidgetCheckbox.hpp"
+
+void WidgetCheckbox::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+	DebugWidget::draw(target, states);
+	states.transform *= getTransform();
+}
+
+// CONSTRUCTOR
+
+WidgetCheckbox::WidgetCheckbox(sf::Font &font) : DebugWidget(font) {
+	
+}
+
+// PUBLIC METHODS

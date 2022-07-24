@@ -13,6 +13,11 @@
 
 class WidgetDropdown : public DebugWidget {
 	int value = 0;
+	
+public:
+	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+	
+	WidgetDropdown(sf::Font &font);
 };
 
 #endif

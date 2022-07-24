@@ -5,3 +5,16 @@
 */
 
 #include "WidgetSlider.hpp"
+
+void WidgetSlider::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+	DebugWidget::draw(target, states);
+	states.transform *= getTransform();
+}
+
+// CONSTRUCTOR
+
+WidgetSlider::WidgetSlider(sf::Font &font) : DebugWidget(font) {
+	
+}
+
+// PUBLIC METHODS

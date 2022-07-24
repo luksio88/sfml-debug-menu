@@ -15,6 +15,11 @@ class WidgetTextbox : public DebugWidget { //todo https://www.youtube.com/watch?
 	std::string value = "";
 	bool isSelected = false;
 	int limit = 0;
+	
+public:
+	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+	
+	WidgetTextbox(sf::Font &font);
 };
 
 #endif
