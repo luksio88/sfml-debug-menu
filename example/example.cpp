@@ -22,8 +22,8 @@ int main() {
 	
 	// adding test widget
 	myMenu.addWidget(WidgetTypeTab);
-	myMenu.addWidget(WidgetTypeTab);
-	myMenu.addWidget(WidgetTypeTab);
+	myMenu.addWidget(WidgetTypeTab, "My Label");
+	myMenu.addWidget(WidgetTypeTab, "First!", -1);
 	
 	while(window.isOpen()) {
 		

@@ -34,6 +34,10 @@ public:
 	DebugWidget(sf::Font &font);
 	
 	void setOrder(int order);
+	void setLabel(std::string label);
+	
+	int getOrder();
+	std::string getLabel();
 };
 
 #endif

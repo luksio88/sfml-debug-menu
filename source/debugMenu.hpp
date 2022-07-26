@@ -47,7 +47,9 @@ public:
 	
 	void handleEvent(sf::Event &event);
 	
-	void addWidget(WidgetType widgetType, int order = 0);
+	void addWidget(WidgetType widgetType, std::string label = "", int order = 0);
+	
+	DebugWidget *getWidget(std::string label);
 };
 
 #endif

@@ -33,5 +33,18 @@ DebugWidget::DebugWidget(sf::Font &font) {
 // PUBLIC METHODS
 
 void DebugWidget::setOrder(int order) {
-	
+	DebugWidget::order = order;
+}
+
+void DebugWidget::setLabel(std::string label) {
+	DebugWidget::label = label;
+	labelText.setString(label);
+}
+
+int DebugWidget::getOrder() {
+	return order;
+}
+
+std::string DebugWidget::getLabel() {
+	return label;
 }

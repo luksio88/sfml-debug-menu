@@ -4,12 +4,18 @@
 	For license information check "LICENSE" file.
 */
 
+#include <algorithm>
+
 #include "DebugMenu.hpp"
 
 void textCenterOrigin(sf::Text &text)
 {
 	sf::FloatRect textRect = text.getLocalBounds();
 	text.setOrigin((int)(textRect.left + textRect.width/2.0f), (int)(textRect.top  + textRect.height/2.0f));
+}
+
+bool compareWidgetOrder(DebugWidget *w1, DebugWidget *w2) {
+	return (w1->getOrder() < w2->getOrder());
 }
 
 void DebugMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const {
@@ -90,7 +96,7 @@ void DebugMenu::handleEvent(sf::Event &event) {
 	}
 }
 
-void DebugMenu::addWidget(WidgetType widgetType, int order) {
+void DebugMenu::addWidget(WidgetType widgetType, std::string label, int order) {
 	widgetVector.emplace_back();
 	switch(widgetType) {
 	case WidgetTypeButton:
@@ -116,4 +122,20 @@ void DebugMenu::addWidget(WidgetType widgetType, int order) {
 		break;
 	}
 	widgetVector.back()->setOrder(order);
+	if(label == "") {
+		widgetVector.back()->setLabel("Widget_" + std::to_string(widgetVector.size()));
+	}
+	else {
+		widgetVector.back()->setLabel(label);
+	}
+	sort(widgetVector.begin(), widgetVector.end(), compareWidgetOrder);
+}
+
+DebugWidget *DebugMenu::getWidget(std::string label) {
+	for(int i = 0; i < widgetVector.size(); i++) {
+		if(widgetVector[i]->getLabel() == label) {
+			return widgetVector[i];
+		}
+	}
+	return NULL;
 }
