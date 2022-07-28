@@ -24,6 +24,8 @@ int main() {
 	myMenu.addWidget(WidgetTypeTab);
 	myMenu.addWidget(WidgetTypeTab, "My Label");
 	myMenu.addWidget(WidgetTypeTab, "First!", -1);
+	myMenu.addWidget(WidgetTypeButton, "Not visible");
+	myMenu.getWidget("Not visible")->setVisibility(false);
 	
 	while(window.isOpen()) {
 		

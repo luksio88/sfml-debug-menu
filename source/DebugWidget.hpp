@@ -22,6 +22,7 @@ enum WidgetType {
 class DebugWidget : public sf::Drawable, public sf::Transformable { // todo: https://www.p-programowanie.pl/cpp/polimorfizm-metody-wirtualne
 protected:
 	int order = 0;
+	bool isVisible = true;
 	std::string label = "Widget";
 	
 	sf::Text labelText;
@@ -35,9 +36,11 @@ public:
 	
 	void setOrder(int order);
 	void setLabel(std::string label);
+	void setVisibility(bool visibility);
 	
 	int getOrder();
 	std::string getLabel();
+	bool getVisibility();
 };
 
 #endif

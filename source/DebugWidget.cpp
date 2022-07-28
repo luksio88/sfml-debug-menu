@@ -41,10 +41,18 @@ void DebugWidget::setLabel(std::string label) {
 	labelText.setString(label);
 }
 
+void DebugWidget::setVisibility(bool isVisible) {
+	DebugWidget::isVisible = isVisible;
+}
+
 int DebugWidget::getOrder() {
 	return order;
 }
 
 std::string DebugWidget::getLabel() {
 	return label;
+}
+
+bool DebugWidget::getVisibility() {
+	return isVisible;
 }

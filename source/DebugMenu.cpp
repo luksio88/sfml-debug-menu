@@ -20,13 +20,19 @@ bool compareWidgetOrder(DebugWidget *w1, DebugWidget *w2) {
 
 void DebugMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 	states.transform *= getTransform();
-	for(int i = 0; i < widgetVector.size(); i++) {
-		(*widgetVector[i]).setPosition(sf::Vector2f(0, 40 * i)); // temporary, it needs to handle tabs retracting!
-		target.draw(*widgetVector[i], states);
+	int widgetShownCount = 0;
+	if(isExtended) {
+		for(int i = 0; i < widgetVector.size(); i++) {
+			if(widgetVector[i]->getVisibility()) {
+				widgetVector[i]->setPosition(sf::Vector2f(0, 40 * i));
+				target.draw(*widgetVector[i], states);
+				widgetShownCount++;
+			}
+		}
 	}
 	
-	extendButtonBg.setPosition(sf::Vector2f(0, 40 * widgetVector.size()));
-	extendButtonText.setPosition(sf::Vector2f(150, 40 * widgetVector.size() + 10));
+	extendButtonBg.setPosition(sf::Vector2f(0, 40 * widgetShownCount));
+	extendButtonText.setPosition(sf::Vector2f(150, 40 * widgetShownCount + 10));
 	
 	target.draw(extendButtonBg, states);
 	target.draw(extendButtonText, states);
