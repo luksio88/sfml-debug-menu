@@ -8,6 +8,8 @@
 
 #include "DebugMenu.hpp"
 
+sf::Vector2f mouse; // current cursor position for internal use
+
 void textCenterOrigin(sf::Text &text)
 {
 	sf::FloatRect textRect = text.getLocalBounds();
@@ -16,6 +18,11 @@ void textCenterOrigin(sf::Text &text)
 
 bool compareWidgetOrder(DebugWidget *w1, DebugWidget *w2) {
 	return (w1->getOrder() < w2->getOrder());
+}
+
+sf::FloatRect translateFloatRect(sf::FloatRect rect, sf::Vector2f vector) {
+	sf::FloatRect newRect(rect.left + vector.x, rect.top + vector.y, rect.width, rect.height);
+	return newRect;
 }
 
 void DebugMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const {
@@ -98,7 +105,13 @@ std::string DebugMenu::getRetractPhrase() {
 
 void DebugMenu::handleEvent(sf::Event &event) {
 	if(event.type == sf::Event::MouseButtonPressed) {
-		toggle();
+		if(translateFloatRect(extendButtonBg.getGlobalBounds(), this->getPosition()).contains(mouse)) { // mayby simplify it later
+			toggle();
+		}
+	}
+	else if(event.type == sf::Event::MouseMoved) {
+		mouse.x = event.mouseMove.x;
+		mouse.y = event.mouseMove.y;
 	}
 }
 
